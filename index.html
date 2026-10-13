@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#060b16">
+  <title>Matrix 3x3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+
+    <!-- Menu -->
+    <section id="tela-menu" class="tela ativa">
+      <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+        <g class="logo-grade">
+          <path d="M36 8 V92" pathLength="1"/><path d="M64 8 V92" pathLength="1"/>
+          <path d="M8 36 H92" pathLength="1"/><path d="M8 64 H92" pathLength="1"/>
+        </g>
+        <g class="logo-x"><path d="M13 13 L29 29" pathLength="1"/><path d="M29 13 L13 29" pathLength="1"/></g>
+        <circle class="logo-o" cx="50" cy="50" r="9" pathLength="1"/>
+        <g class="logo-x"><path d="M71 71 L87 87" pathLength="1"/><path d="M87 71 L71 87" pathLength="1"/></g>
+      </svg>
+      <h1>Matrix 3x3</h1>
+      <p class="sub">Jogue no mesmo aparelho ou online, do computador ao celular.</p>
+      <div class="botoes">
+        <button id="btn-local" class="btn primario" type="button">Modo Local</button>
+        <button id="btn-online" class="btn" type="button">Modo Online</button>
+      </div>
+    </section>
+
+    <!-- Online: criar ou entrar -->
+    <section id="tela-online" class="tela">
+      <h2>Modo Online</h2>
+      <p class="sub">Crie uma sala e passe o código para seu amigo, ou entre numa sala existente. Funciona entre computador, celular e tablet.</p>
+      <div class="botoes">
+        <button id="btn-criar" class="btn primario" type="button">Criar sala</button>
+      </div>
+      <p class="divisor">ou entre com um código</p>
+      <div class="botoes">
+        <input id="input-codigo" class="campo" type="text" maxlength="5" placeholder="Código da sala"
+               autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false"
+               inputmode="text" enterkeyhint="go" aria-label="Código da sala">
+        <button id="btn-entrar" class="btn" type="button">Entrar na sala</button>
+      </div>
+      <p id="msg-online" class="msg" role="status"></p>
+      <button id="btn-voltar-online" class="btn link" type="button">Voltar ao menu</button>
+    </section>
+
+    <!-- Online: aguardando oponente -->
+    <section id="tela-espera" class="tela">
+      <h2>Sala criada</h2>
+      <p class="sub">Envie este código ou o link para o outro jogador.</p>
+      <div id="codigo-sala" class="codigo" aria-live="polite">-----</div>
+      <div class="botoes linha">
+        <button id="btn-copiar-codigo" class="btn" type="button">Copiar código</button>
+        <button id="btn-copiar-link" class="btn" type="button">Copiar link</button>
+      </div>
+      <p id="msg-espera" class="msg" role="status">Aguardando o outro jogador entrar…</p>
+      <button id="btn-cancelar-sala" class="btn link" type="button">Cancelar e sair</button>
+    </section>
+
+    <!-- Jogo -->
+    <section id="tela-jogo" class="tela">
+      <div class="jogo-grade">
+
+        <div class="quadro">
+          <div class="campo-jogo">
+            <div id="tabuleiro" class="tabuleiro" role="grid" aria-label="Tabuleiro">
+              <button class="celula" type="button" data-i="0"></button>
+              <button class="celula" type="button" data-i="1"></button>
+              <button class="celula" type="button" data-i="2"></button>
+              <button class="celula" type="button" data-i="3"></button>
+              <button class="celula" type="button" data-i="4"></button>
+              <button class="celula" type="button" data-i="5"></button>
+              <button class="celula" type="button" data-i="6"></button>
+              <button class="celula" type="button" data-i="7"></button>
+              <button class="celula" type="button" data-i="8"></button>
+            </div>
+            <svg id="linha-vitoria" class="linha-vitoria" viewBox="0 0 300 300" aria-hidden="true"></svg>
+          </div>
+        </div>
+
+        <div class="hud">
+          <div class="placar" aria-label="Placar">
+            <div id="placar-x" class="pontos x"><span id="nome-x">Jogador X</span><strong id="valor-x">0</strong></div>
+            <div class="pontos empate"><span>Empates</span><strong id="valor-e">0</strong></div>
+            <div id="placar-o" class="pontos o"><span id="nome-o">Jogador O</span><strong id="valor-o">0</strong></div>
+          </div>
+
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+
+          <div class="botoes linha">
+            <button id="btn-nova" class="btn primario" type="button">Nova partida</button>
+            <button id="btn-sair" class="btn" type="button">Sair</button>
+          </div>
+
+          <p id="sala-info" class="sala-info" hidden><span id="led" class="led ok"></span><span id="sala-texto"></span></p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
